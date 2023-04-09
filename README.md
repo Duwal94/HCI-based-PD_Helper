@@ -5,7 +5,7 @@
 
 Step 1  :Connect the Aurdino to the Main Pc
 
-Step 2 : Download dependecies from the requirement.txt file 
+Step 2 : Download the dependencies from the requirement.txt file 
 
 Step 3 : Open and run app.py 
 
@@ -20,7 +20,7 @@ Step 5 : Use the Ngrok URL: Once Ngrok is running, you should see a URL that loo
           http://c813e03d.ngrok.io
           
           
-    the url above can be accessed from any device that the care taker is using  
+   the url above can be accessed from any device that the care taker is using  
 
 Hardware :
 
