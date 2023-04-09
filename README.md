@@ -22,3 +22,23 @@ Step 5 : Use the Ngrok URL: Once Ngrok is running, you should see a URL that loo
           
     the url above can be accessed from any device that the care taker is using  
 
+Hardware :
+
+
+
+![image](https://user-images.githubusercontent.com/89547409/230775428-b38ed558-3efe-4e8a-ba12-719599e021f5.png)
+
+
+
+Web Interface : 
+
+
+![image](https://user-images.githubusercontent.com/89547409/230775528-06bc180a-6330-4d1d-b4a8-475961699144.png)
+
+
+
+
+Control Interface:
+
+![image](https://user-images.githubusercontent.com/89547409/230775563-423e0f8b-7bf1-4e5d-a70c-9eb3b64c50b5.png)
+
