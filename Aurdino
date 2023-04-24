@@ -1,0 +1,93 @@
+#Aurdino Code 
+
+#include <math.h>
+#include <string.h>
+#include "DHT.h"
+#include <Adafruit_GFX.h>
+#include <Adafruit_SH1106.h>
+#include <SoftwareSerial.h>
+
+#define OLED_RESET -1
+#define DHTPIN 7
+#define DHTTYPE DHT11
+#define BUZZER_PIN 2
+#define GAS_SENSOR_PIN A0
+#define AC_PIN 3
+#define FAN_PIN 4
+#define LIGHTS_PIN 5
+
+Adafruit_SH1106 display(OLED_RESET);
+DHT dht(DHTPIN, DHTTYPE);
+
+void setup() {
+  // put your setup code here, to run once:
+  Serial.begin(9600);
+  pinMode(BUZZER_PIN,OUTPUT);
+  pinMode(LIGHTS_PIN,OUTPUT);
+  pinMode(AC_PIN,OUTPUT);
+  pinMode(FAN_PIN,OUTPUT);
+  dht.begin();
+  display.begin(SH1106_SWITCHCAPVCC, 0x3C);
+  display.clearDisplay();
+  display.setTextColor(WHITE);
+  display.setTextSize(1);
+  display.setCursor(0,0);
+  display.println("Hello there");
+  display.display();
+}
+
+void loop() {
+  delay(5000);
+  char str = Serial.read();
+  if (str == 'f'){
+    digitalWrite(FAN_PIN,HIGH);
+    delay(1000);
+    digitalWrite(FAN_PIN, LOW);
+    delay(1000);
+
+  }else if (str == 'a'){
+    digitalWrite(AC_PIN,HIGH);
+    delay(1000);
+    digitalWrite(AC_PIN, LOW);
+    delay(1000);
+
+  }
+  else if (str == 'l'){
+    digitalWrite(LIGHTS_PIN,HIGH);
+    delay(1000);
+    digitalWrite(LIGHTS_PIN, LOW);
+    delay(1000);
+
+  }
+  display.clearDisplay();
+  display.setCursor(0,0);
+  // put your main code here, to run repeatedly:
+  int gasSensorValue = analogRead(GAS_SENSOR_PIN);
+  float h = dht.readHumidity();
+  float t = dht.readTemperature();
+  if(gasSensorValue>=600){
+    digitalWrite(BUZZER_PIN,HIGH);
+  }
+  else{
+    digitalWrite(BUZZER_PIN,LOW);
+  }
+  if(h>=70){
+  display.print("AC on plzz..");
+  }
+  else{
+  display.print("Tempy = ");
+  display.print(t);
+  display.println(" C");
+  display.print("Humidity = ");
+  display.print(h);
+  display.println("%");
+  display.print("PPM = ");
+  display.println(gasSensorValue);
+  }
+  Serial.print(t);
+  Serial.print(" ");
+  Serial.print(h);
+  Serial.print(" ");
+  Serial.println(gasSensorValue);
+  display.display();
+}
